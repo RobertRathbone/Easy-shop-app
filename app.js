@@ -6,18 +6,23 @@ const cors = require('cors');
 
 app.use(cors());
 app.options('*', cors());
+mongoose.set('useFindAndModify', false);
 
 require('dotenv/config');
 const api = process.env.API_URL;
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
+const usersRouter = require('./routes/users');
 
 //Middleware
 app.use(express.json());
 app.use(morgan('tiny'));
 
-app.use(`${api}/products`, productsRouter)
-app.use(`${api}/categories`, categoriesRouter)
+
+app.use(`${api}/products`, productsRouter);
+app.use(`${api}/categories`, categoriesRouter);
+app.use(`${api}/users`, usersRouter);
+
 // app.get(`${api}/products`,(req, res) =>{
 //     const product = {
 //         id: 1,
