@@ -1,4 +1,3 @@
-
 const {Category} = require('../models/category');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -26,21 +25,22 @@ router.get('/:id', async(req,res)=>{
 
 
 
-router.post('/', async (req,res)=>{
-    let category = new Category({
+router.post('/', async (req,res) => 
+{
+    const category = new Category({
         name: req.body.name,
         icon: req.body.icon,
         color: req.body.color
     })
     try {
-    category = await category.save();
+    category = await category.save()
     } catch (error) {
-    console.log('well...')
-    // if(!category)
-    // return res.status(400).send('the category cannot be created!')
+    console.log('well...');
+    if(!category)
+    return res.status(400).send('the category cannot be created!')
     }
     res.send(category);
-})
+});
 
 
 router.put('/:id',async (req, res)=> {
@@ -54,7 +54,7 @@ router.put('/:id',async (req, res)=> {
         },
         { new: true}
     )} catch (error) {
-
+        console.log("past put error");
     if(!category)
     return res.status(400).send('the category cannot be created!')
     }
