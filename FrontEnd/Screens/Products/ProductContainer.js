@@ -32,14 +32,14 @@ const ProductContainer = () => {
         setInitialState(data);
 
         return () => {
-            setProducts([])
-            setProductsFiltered([])
-            setFocus()
-            setCategories([])
-            setActive()
-            setInitialState()
-        }
-    }, [])
+            setProducts([]);
+            setProductsFiltered([]);
+            setFocus();
+            setCategories([]);
+            setActive();
+            setInitialState();
+        };
+    }, [],)
 
     const SearchProduct = (text) => {
       setProductsFiltered(
@@ -60,9 +60,9 @@ const ProductContainer = () => {
       {
         ctg === 'all'
         ? [setProductsCtg(initialState), setActive(true)] : [
-          setProductsCtg(products.filter((i) => i.category.id === ctg ),
+          setProductsCtg(products.filter(i => i.category.$oid === ctg ),
           setActive(true)
-          ),
+          )
         ];
       }
     }
@@ -106,10 +106,11 @@ const ProductContainer = () => {
                return(
                    <ProductList
                       //  navigation={props.navigation}
-                       key={item._id}
+                       key={item._id.$oid}
                        item={item}
+                       
                    />
-               )
+               );
            })}
           </View>
           ) : (
