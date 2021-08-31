@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { ListItem, Badge, Text } from 'native-base';
-
+ 
 const CategoryFilter = (props) => {
-
+ 
     return(
         <ScrollView
             bounces={true}
@@ -29,7 +30,7 @@ const CategoryFilter = (props) => {
                       <TouchableOpacity
                       key={item._id}
                       onPress={() => {
-                          props.categoryFilter(item._id), 
+                          props.categoryFilter(item._id.$oid), 
                           props.setActive(props.categories.indexOf(item))
                       }}
                   >
@@ -47,7 +48,7 @@ const CategoryFilter = (props) => {
         </ScrollView>
     )
 }
-
+ 
 const styles = StyleSheet.create({
     center: {
         justifyContent: 'center',
@@ -60,5 +61,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#a0e1eb'
     }
 })
-
+ 
 export default CategoryFilter;
